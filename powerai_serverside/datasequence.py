@@ -1,14 +1,16 @@
+# Credit for this code goes to: https://techblog.appnexus.com/a-keras-multithreaded-dataframe-generator-for-millions-of-image-files-84d3027f6f43
+
 import os
-
-import tensorflow as tf
-from keras.utils import Sequence
-
-import numpy as np
-
-from keras.preprocessing.image import load_img
-from keras.preprocessing.image import img_to_array
 import math
 import random
+
+import tensorflow as tf
+
+from keras.utils import Sequence
+from keras.preprocessing.image import load_img
+from keras.preprocessing.image import img_to_array
+
+import numpy as np
 
 datapath = './im/'
 
