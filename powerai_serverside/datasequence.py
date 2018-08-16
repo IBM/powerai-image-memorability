@@ -4,11 +4,8 @@ import os
 import math
 import random
 
-import tensorflow as tf
-
 from keras.utils import Sequence
-from keras.preprocessing.image import load_img
-from keras.preprocessing.image import img_to_array
+from keras.preprocessing.image import load_img, img_to_array
 
 import numpy as np
 
