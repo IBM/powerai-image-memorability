@@ -26,6 +26,7 @@ TODO: add flow diagram
 # Prerequisites
 
 * If you don't already have a PowerAI server, you can acquire one from [Nimbix](https://www.nimbix.net/ibm) or from the [PowerAI offering](https://console.bluemix.net/catalog/services/powerai) on IBM Cloud.
+* macOS 10.13 (High Sierra) or later
 
 # Steps
 
@@ -37,7 +38,7 @@ TODO: add flow diagram
 
 ### 1. Clone the repo
 
-Clone the `powerai-image-memorability` repo locally. In a terminal, run:
+Clone the `powerai-image-memorability` repo onto both your PowerAI server and local macOS machine. In a terminal, run:
 
 ```
 git clone https://www.github.com/IBM/powerai-image-memorability
@@ -59,4 +60,30 @@ sh download_extract_data.sh
 
 ### 3. Train the Keras model
 
-To train the keras model
+To train the Keras model, run the following command inside of the `powerai_serverside` directory:
+
+```
+python train_nasnet.py
+```
+
+Once Python script is done running, you'll see a `current_best.hdf5` model in the `powerai_serverside` directory. Copy that over to the `webapp` directory on the macOS machine that you'd like to run the frontend on.
+
+### 4. Convert the Keras model to a CoreML model
+
+Inside of the `webapp` directory on your macOS machine, run the following Python script to convert your Keras model to a CoreML model:
+
+```
+python convert_model.py current_best.hdf5
+```
+
+This may take a few minutes, but when you're done, you should see a `lamem.mlmodel` file in the `webapp` directory.
+
+### 5. Run the Kitura web app
+
+Then, you're ready to roll! Run the following command to build & run your application:
+
+```
+swift build && swift run
+```
+
+Now, you can head over to `localhost:3333` in your favourite web browser, upload an image, and calculate its memorability.
