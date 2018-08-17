@@ -57,16 +57,16 @@ git clone https://www.github.com/IBM/powerai-image-memorability
 
 ### 2. Download the LaMem data
 
-To simplify the data download and extraction procedure, this code pattern contains a script that you can run to download and extract the data for you. To run this script, `cd` into the `powerai_serverside` directory in a terminal:
+To download the LaMem dataset, head over to the `powerai_serverside` directory, and run the following command:
 
 ```
-cd powerai_serverside
+wget http://memorability.csail.mit.edu/lamem.tar.gz
 ```
 
-Then, run the following command to execute the script:
+Once the dataset is done downloading, run the following command to extract that data:
 
 ```
-sh download_extract_data.sh
+tar -xvf lamem.tar.gz
 ```
 
 ### 3. Train the Keras model
@@ -98,6 +98,8 @@ swift build && swift run
 ```
 
 Now, you can head over to `localhost:3333` in your favourite web browser, upload an image, and calculate its memorability.
+
+TODO: add screenshot
 
 ## Links
 
