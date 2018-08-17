@@ -1,6 +1,17 @@
 # Predicting Image Memorability with NASNet in Keras on PowerAI
 
 This code pattern will enable you to build an application that predicts how "unique" or "memorable" images are. You'll do this through the Keras deep learning library, using the NASNet architecture. The dataset this neural network will be trained on is called "LaMem" (Large-scale Image Memorability), by MIT. In order to process the 45,000 training images and 10,000 testing images (224x224 RGB) efficiently, we'll be training the neural network on a PowerAI machine on NIMBIX, enabling us to benefit from NVLink (direct CPU-GPU memory interconnect) without needing any extra code.
+Once the model has been trained on PowerAI, we'll convert it to a CoreML model and expose it via a web application written in Swift, running on a Kitura server on macOS.
+
+When the reader has completed this pattern, they'll understand how to:
+
+* Train a Keras model on PowerAI.
+* Use a custom loss function with a Keras model.
+* Use `DataSequence` to generate regressor data for Keras models.
+* Convert Keras models that deal with images to CoreML models.
+* Use the Apple Vision framework with a CoreML model in Swift to get `VNCoreMLFeatureValueObservation`s.
+* Host a Web Server with Kitura
+* Expose a Mustache HTTP template through Kitura
 
 ## Flow
 
@@ -87,3 +98,7 @@ swift build && swift run
 ```
 
 Now, you can head over to `localhost:3333` in your favourite web browser, upload an image, and calculate its memorability.
+
+## Links
+
+* [DataSequence](https://techblog.appnexus.com/a-keras-multithreaded-dataframe-generator-for-millions-of-image-files-84d3027f6f43)
