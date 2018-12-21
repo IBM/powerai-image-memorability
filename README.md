@@ -36,7 +36,7 @@ TODO: add flow diagram
 
 # Prerequisites
 
-* If you don't already have a PowerAI server, you can acquire one from [Nimbix](https://www.nimbix.net/ibm) or from the [PowerAI offering](https://console.bluemix.net/catalog/services/powerai) on IBM Cloud.
+* If you don't already have a PowerAI server, you can acquire one from [Nimbix](https://www.nimbix.net/ibm) or from the [PowerAI offering](https://cloud.ibm.com/catalog/services/powerai) on IBM Cloud.
 * macOS 10.13 (High Sierra) or later
 
 # Steps
