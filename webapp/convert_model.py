@@ -1,5 +1,6 @@
-import coremltools
 import sys
+
+import coremltools
 
 # The model was trained in tf.keras, so we need to load the model the same way
 from tensorflow.keras.models import load_model
