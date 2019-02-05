@@ -15,7 +15,7 @@ def load_image(image_file):
     return np.array(Image.open(image_file).resize((227, 227)).convert("RGB"), dtype="float32") / 255.
 
 # Function that yields random samples of LaMem data
-def lamem_generator(split_file, batch_size=1024):
+def lamem_generator(split_file, batch_size):
     while True:
         random_files = random.sample(split_file, batch_size)
         inputs = mp.Pool().map(load_image, ["lamem/images/" + i[0] for i in random_files])
