@@ -41,7 +41,7 @@ TODO: add flow diagram
 # Steps
 
 1. [Clone the repo](#1-clone-the-repo)
-1. [Download the LaMem data](#2-download-extract-the-lamem-data)
+1. [Download the LaMem data](#2-download-and-extract-the-lamem-data)
 1. [Train the Keras model](#3-train-the-keras-model)
 1. [Convert the Keras model to a CoreML model](#4-convert-the-keras-model-to-a-coreml-model)
 1. [Run the Kitura web app](#5-run-the-kitura-web-app)
@@ -54,7 +54,7 @@ Clone the `powerai-image-memorability` repo onto both your PowerAI server and lo
 git clone https://www.github.com/IBM/powerai-image-memorability
 ```
 
-### 2. Download & extract the LaMem data
+### 2. Download and extract the LaMem data
 
 To download the LaMem dataset, head over to the `powerai_serverside` directory, and run the following command:
 
