@@ -1,12 +1,35 @@
 import coremltools
 import sys
-from keras.models import load_model
-from keras import backend as K
+from tensorflow.keras.models import load_model
 
-def euc_dist_keras(y_true, y_pred):
-    return K.sqrt(K.sum(K.square(y_true - y_pred), axis=-1, keepdims=True))
+from keras.models import Sequential
+from keras.layers import *
 
-k_model = load_model(sys.argv[1], custom_objects={'euc_dist_keras': euc_dist_keras})
+tf_model = load_model(sys.argv[1])
+weights = tf_model.get_weights()
 
-model = coremltools.converters.keras.convert(k_model, input_names="data", image_input_names="data", image_scale=1./255.)
-model.save("lamem.mlmodel")
+model = Sequential()
+model.add(Conv2D(96, (11, 11), strides=(4, 4), activation="relu", input_shape=(227, 227, 3)))
+model.add(MaxPooling2D((3, 3), (2, 2)))
+model.add(BatchNormalization())
+model.add(Conv2D(256, (5, 5), activation="relu"))
+model.add(ZeroPadding2D((2, 2)))
+model.add(MaxPooling2D((3, 3), (2, 2)))
+model.add(BatchNormalization())
+model.add(Conv2D(384, (3, 3), activation="relu"))
+model.add(ZeroPadding2D((1, 1)))
+model.add(Conv2D(384, (3, 3), activation="relu"))
+model.add(ZeroPadding2D((1, 1)))
+model.add(Conv2D(256, (3, 3), activation="relu"))
+model.add(ZeroPadding2D((1, 1)))
+model.add(MaxPooling2D((3, 3), (2, 2)))
+model.add(GlobalAveragePooling2D())
+model.add(Dense(4096, activation="relu"))
+model.add(Dropout(0.5))
+model.add(Dense(4096, activation="relu"))
+model.add(Dropout(0.5))
+model.add(Dense(1))
+model.set_weights(weights)
+
+coreml_model = coremltools.converters.keras.convert(model, input_names="data", image_input_names="data", image_scale=1./255.)
+coreml_model.save("lamem.mlmodel")
